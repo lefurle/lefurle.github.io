@@ -1,0 +1,168 @@
+/* Lefurle — зимний вечер: чернильно-синий, шампань, снег и бордовая шёлковая подкладка распахнутой шубы. */
+:root {
+  --ink: #1A1F2E;
+  --ink-2: #242B3E;
+  --champ: #D8C09A;
+  --champ-hi: #E7D3B2;
+  --snow: #F3F0EA;
+  --snow-2: #E7E2D8;
+  --taupe: #8E8071;
+  --lining: #6B1D2C;
+  --lining-hi: #84283A;
+  --text-ink: #22232A;
+  --focus: #E7D3B2;
+  --display: 'Yeseva One', Georgia, serif;
+  --text: 'Jost', system-ui, sans-serif;
+  --header-h: 78px;
+  --jacquard: radial-gradient(circle at 50% 50%, rgba(231, 211, 178, .09) 22%, transparent 23%) 0 0 / 26px 26px,
+              radial-gradient(circle at 50% 50%, rgba(231, 211, 178, .06) 22%, transparent 23%) 13px 13px / 26px 26px;
+}
+
+body { background: var(--ink); color: var(--snow); font: 400 18px/1.6 var(--text); }
+.wrap { width: min(1180px, 100% - 40px); margin-inline: auto; }
+.h2 { font: 400 clamp(34px, 4.4vw, 58px)/1.08 var(--display); }
+.section-lead { margin-top: 12px; max-width: 60ch; color: var(--taupe); }
+.link { color: var(--lining-hi); font-weight: 500; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 0 26px;
+  border-radius: 2px; border: 1px solid transparent; font: 500 17px/1 var(--text); letter-spacing: .02em; text-decoration: none;
+  transition: background-color .25s, color .25s, border-color .25s;
+}
+.btn--champ { background: var(--champ); color: var(--ink); }
+.btn--champ:hover { background: var(--champ-hi); }
+.btn--line { border-color: currentColor; color: inherit; background: transparent; }
+.btn--line:hover { border-color: var(--champ); color: var(--champ-hi); }
+
+/* Шапка */
+.header { position: fixed; inset: 0 0 auto; z-index: 50; height: var(--header-h); transition: background-color .3s; }
+.header[data-scrolled="true"], html.menu-open .header { background: rgba(26, 31, 46, .97); }
+.header__row { height: 100%; display: flex; align-items: center; gap: 30px; }
+.brand { display: flex; flex-direction: column; text-decoration: none; line-height: 1; }
+.brand__name { font: 400 30px/1 var(--display); color: var(--champ); }
+.brand__sub { font-size: 13px; color: var(--taupe); margin-top: 4px; letter-spacing: .04em; }
+.nav { margin-left: auto; display: flex; gap: 28px; }
+.nav a { text-decoration: none; color: #C9C3B8; }
+.nav a:hover { color: var(--champ-hi); }
+.header__cta { min-height: 44px; padding: 0 20px; font-size: 16px; }
+.burger { display: none; width: 44px; height: 44px; border: 0; background: none; padding: 10px; margin-right: -10px; }
+.burger span:not(.visually-hidden) { display: block; height: 1.5px; background: var(--snow); margin: 7px 0; transition: transform .25s; }
+.burger[aria-expanded="true"] span:nth-of-type(2) { transform: translateY(4.25px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-of-type(3) { transform: translateY(-4.25px) rotate(-45deg); }
+@media (max-width: 899px) {
+  .burger { display: block; margin-left: auto; }
+  .header__cta { display: none; }
+  .nav { position: fixed; inset: var(--header-h) 0 0; background: var(--ink); flex-direction: column; gap: 10px; padding: 28px 20px; margin: 0; }
+  .nav a { font: 400 32px/1.35 var(--display); color: var(--snow); }
+}
+
+/* Первый экран: мех и подкладка */
+.hero { padding: calc(var(--header-h) + 40px) 0 90px; overflow: hidden; }
+.hero__grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+.hero__place { color: var(--champ); font-size: 16px; margin-bottom: 18px; }
+.hero__title { font: 400 clamp(40px, 5.4vw, 76px)/1.05 var(--display); text-wrap: balance; }
+.hero__lead { margin-top: 24px; max-width: 46ch; color: #CFC9BE; font-weight: 300; font-size: 20px; }
+.hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.hero__proof { margin-top: 26px; }
+.hero__proof a { text-decoration: none; color: var(--taupe); }
+.hero__proof b { font: 400 28px/1 var(--display); color: var(--champ); margin-right: 6px; }
+
+.coat { position: relative; height: 600px; }
+.coat__lining { position: absolute; inset: 40px 26% 0 0; background: var(--jacquard), linear-gradient(135deg, var(--lining-hi), var(--lining) 60%, #4E1320); clip-path: polygon(0 0, 100% 0, 100% 100%, 22% 100%); }
+.coat__fur { position: absolute; top: 0; right: 0; width: 72%; height: 100%; object-fit: cover; clip-path: polygon(24% 0, 100% 0, 100% 100%, 0 100%); animation: open 1.2s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes open { from { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); } to { clip-path: polygon(24% 0, 100% 0, 100% 100%, 0 100%); } }
+
+/* Услуги */
+.services { padding: 100px 0; background: var(--snow); color: var(--text-ink); }
+.services .section-lead { color: #6F6558; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 40px; background: var(--snow-2); border: 1px solid var(--snow-2); }
+.card { padding: 30px 28px; background: var(--snow); display: grid; gap: 8px; align-content: start; }
+.card__price { font: 400 44px/1 var(--display); color: var(--lining); }
+.card__price small { font: 400 16px/1 var(--text); color: #6F6558; }
+.card h3 { font: 500 21px/1.25 var(--text); margin-top: 8px; }
+.card p:not(.card__price) { color: #5F574C; font-size: 17px; }
+.card--accent { background: var(--ink); color: var(--snow); }
+.card--accent .card__price { color: var(--champ); }
+.card--accent p:not(.card__price) { color: #C9C3B8; }
+.card--accent .card__price small { color: var(--taupe); }
+
+/* Биочистка */
+.clean { padding: 100px 0; }
+.clean__grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; align-items: center; }
+.clean__photo { margin: 0; }
+.clean__photo img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.clean__steps { list-style: none; padding: 0; margin: 30px 0 0; counter-reset: s; display: grid; gap: 18px; }
+.clean__steps li { counter-increment: s; position: relative; padding-left: 64px; color: #CFC9BE; }
+.clean__steps li::before { content: counter(s); position: absolute; left: 0; top: -6px; font: 400 44px/1 var(--display); color: var(--champ); }
+.clean__steps b { color: var(--snow); font-weight: 500; }
+.clean__price { margin-top: 28px; font-size: 20px; }
+.clean__price b { font: 400 30px/1 var(--display); color: var(--champ); }
+
+/* Было и стало — на подкладке */
+.stories { padding: 100px 0; background: var(--jacquard), var(--lining); }
+.stories .section-lead { color: #E3B9C1; }
+.story-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+.story { padding: 28px; background: var(--snow); color: var(--text-ink); display: grid; gap: 16px; align-content: start; }
+.story p span { display: block; font: 400 22px/1 var(--display); margin-bottom: 6px; }
+.story__was { color: #6F6558; }
+.story__was span { color: var(--taupe); }
+.story__now span { color: var(--lining); }
+.story__who { font-weight: 500; font-size: 16px; color: #6F6558; border-top: 1px solid var(--snow-2); padding-top: 12px; }
+
+/* Отзывы */
+.reviews { padding: 100px 0; background: var(--snow); color: var(--text-ink); }
+.reviews__grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: start; }
+.aspects { margin: 24px 0 18px; display: grid; gap: 8px; }
+.aspects b { font: 400 26px/1 var(--display); color: var(--lining); margin-right: 6px; }
+.reviews .link { color: var(--lining); }
+.reviews__photo { margin: 30px 0 0; }
+.reviews__photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.quotes { display: grid; gap: 16px; }
+.quotes blockquote { margin: 0; padding: 24px 26px; background: #fff; border-left: 3px solid var(--lining); }
+.quotes footer { margin-top: 10px; font-weight: 500; font-size: 16px; color: #6F6558; }
+
+/* Как попасть */
+.visit { padding: 100px 0; }
+.visit__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.hours { margin-top: 26px; border-collapse: collapse; width: 100%; max-width: 480px; }
+.hours caption { text-align: left; color: var(--taupe); padding-bottom: 8px; }
+.hours th, .hours td { padding: 12px 0; border-bottom: 1px solid rgba(243, 240, 234, .15); text-align: left; font-weight: 400; }
+.hours td { text-align: right; font: 400 22px/1 var(--display); color: var(--champ); }
+.visit__tip { margin-top: 18px; color: #CFC9BE; max-width: 46ch; }
+.addr { font-style: normal; margin-top: 22px; font: 400 26px/1.2 var(--display); }
+.addr__links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+.pay { margin-top: 18px; color: var(--taupe); }
+.form { padding: 32px; background: var(--ink-2); display: grid; gap: 14px; border: 1px solid rgba(216, 192, 154, .25); }
+.form h3 { font: 400 28px/1.15 var(--display); color: var(--champ); }
+.field span { display: block; font-size: 15px; color: #C9C3B8; margin-bottom: 6px; }
+.field input, .field select { width: 100%; min-height: 50px; padding: 12px 14px; border-radius: 2px; border: 1px solid rgba(243, 240, 234, .2); background: var(--ink); color: var(--snow); color-scheme: dark; }
+.field input:focus, .field select:focus { outline: none; border-color: var(--champ); }
+.form__hint { font-size: 15px; color: var(--taupe); }
+.form__btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.status { padding: 12px 14px; background: rgba(216, 192, 154, .14); }
+.status[data-state="error"] { background: rgba(132, 40, 58, .4); }
+
+.footer { padding: 40px 0 110px; background: #12151F; color: var(--taupe); font-size: 15px; }
+.footer__brand { font: 400 28px/1 var(--display); color: var(--champ); margin-bottom: 10px; }
+.footer a { color: #C9C3B8; }
+.social { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 10px; }
+.footer__demo { margin-top: 14px; font-size: 13px; max-width: 70ch; }
+@media (min-width: 900px) { .footer { padding-bottom: 40px; } }
+
+.callbar { display: grid; grid-template-columns: 1fr 1fr 1.3fr; background: var(--ink-2); box-shadow: 0 -1px 0 rgba(216, 192, 154, .3); }
+.callbar a { display: grid; place-items: center; min-height: 58px; text-decoration: none; font-weight: 500; }
+.callbar__main { background: var(--champ); color: var(--ink); }
+
+@media (max-width: 1000px) {
+  .hero__grid, .clean__grid, .reviews__grid, .visit__grid { grid-template-columns: 1fr; }
+  .coat { height: 460px; max-width: 520px; }
+  .cards, .story-list { grid-template-columns: 1fr 1fr; }
+  .clean__photo { max-width: 360px; }
+}
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+  .coat { height: 380px; }
+  .cards, .story-list { grid-template-columns: 1fr; }
+  .services, .clean, .stories, .reviews, .visit { padding: 72px 0; }
+  .form { padding: 22px; }
+}
