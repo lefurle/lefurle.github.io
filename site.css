@@ -166,3 +166,11 @@ body { background: var(--ink); color: var(--snow); font: 400 18px/1.6 var(--text
   .services, .clean, .stories, .reviews, .visit { padding: 72px 0; }
   .form { padding: 22px; }
 }
+
+/* Фишка: при прокрутке шуба распахивается — мех отъезжает и открывает подкладку. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .coat__fur { animation: open 1.2s cubic-bezier(.2, .8, .2, 1) both, unbutton linear both; animation-timeline: auto, scroll(root); animation-range: normal, 0 80vh; }
+    @keyframes unbutton { to { translate: 16% 0; } }
+  }
+}
