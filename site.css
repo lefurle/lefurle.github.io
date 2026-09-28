@@ -174,3 +174,10 @@ body { background: var(--ink); color: var(--snow); font: 400 18px/1.6 var(--text
     @keyframes unbutton { to { translate: 16% 0; } }
   }
 }
+
+/* Фон секции: ИИ-текстура (Cloudflare Workers AI) под заливкой цвета сайта — декор, не фото бизнеса.
+   На компьютере картинка закреплена за окном — при прокрутке секция работает как окно (параллакс). */
+.stories { background: linear-gradient(color-mix(in srgb, var(--lining) 55%, transparent), color-mix(in srgb, var(--lining) 78%, transparent)), url('img/bg-stories.webp') center / cover var(--lining); }
+@media (hover: hover) and (pointer: fine) {
+  .stories { background-attachment: scroll, fixed; }
+}
